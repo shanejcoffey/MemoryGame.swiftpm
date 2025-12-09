@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct CardView: View {
+    @Binding var card: Card
     var body: some View {
-        Text("Showing card!")
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundStyle(.blue)
+            
+            if card.isFaceUp {
+                Image(card.imageName)
+            } else {
+                Image("FaceDownCard")
+            }
+        }
     }
-}
-
-#Preview {
-    CardView()
 }
