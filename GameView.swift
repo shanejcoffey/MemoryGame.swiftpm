@@ -15,5 +15,11 @@ struct GameView: View {
     
     var body: some View {
         // display cards in grid
+        let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+        LazyVGrid(columns: columns){
+            ForEach(cards, id: \.self){ card in
+                
+            }
+        }
     }
 }
