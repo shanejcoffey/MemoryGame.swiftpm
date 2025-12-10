@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-class Card {
+class Card: Identifiable {
     var isFaceUp: Bool
     var imageName: String
+    var id = UUID()
     init(imageName: String, isFaceUp: Bool = false) {
         self.imageName = imageName
         self.isFaceUp = isFaceUp

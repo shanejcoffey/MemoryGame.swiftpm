@@ -9,15 +9,30 @@ import SwiftUI
 
 struct GameView: View {
     
-    @State var cards: [Card]
+    @State var cards: [Card] = [Card(imageName: "aceSpades")]
     @State var columns: Int
     @State var rows: Int
-    
+    @Binding var amountOfCards: Int
     var body: some View {
         // display cards in grid
-        let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-        LazyVGrid(columns: columns){
+        VStack{
             
+            var columnss = Array(repeating: GridItem(.flexible()), count: columns)
+            
+            LazyVGrid(columns: columnss){
+                ForEach($cards){card in
+                    CardView(card: card)
+                        .onTapGesture {
+                            //card.isFaceUp = true
+                        }
+                }
+            }
+        }
+        .onAppear(){
+            for _ in 0..<(columns*rows){
+                cards.append(Card(imageName: "aceSpades"))
+            }
         }
     }
+        
 }
