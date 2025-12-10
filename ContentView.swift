@@ -35,7 +35,10 @@ struct ContentView: View {
                             Button {
                                 difficultySelected = difficulty
                             } label: {
-                                Text(difficulty)
+                                HStack {
+                                    Image("\(difficulty)Image")
+                                    Text(difficulty)
+                                }
                             }
                         }
                     } label: {
