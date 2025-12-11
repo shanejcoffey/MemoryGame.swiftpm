@@ -12,6 +12,8 @@ struct ContentView: View {
     ]
     
     @State var difficultySelected: String = "super easy"
+    @State var rows = 2
+    @State var columns = 2
     
     var body: some View {
         NavigationStack {
@@ -65,7 +67,7 @@ struct ContentView: View {
                                 .frame(maxWidth: 190, maxHeight: 150)
                                 .foregroundStyle(.cyan)
                             
-                            Text("Single player")
+                            NavigationLink("Single player", destination: GameView(columns: columns, rows: rows, amountOfCards: $numCards))
                                 .foregroundStyle(.black)
                                 .font(.title)
                                 .bold()
@@ -91,6 +93,24 @@ struct ContentView: View {
                 
                 Spacer()
             }
+        }
+    }
+    func rowAndColumn(){
+        if difficultySelected == "super easy"{
+            rows = 2
+            columns = 2
+        }
+        if difficultySelected == "easy"{
+            rows = 4
+            columns = 2
+        }
+        if difficultySelected == "medium"{
+            rows = 4
+            columns = 4
+        }
+        if difficultySelected == "hard"{
+            rows = 4
+            columns = 6
         }
     }
 }
