@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardView: View {
-    @Binding var card: Card
+    @ObservedObject var card: Card
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
@@ -16,8 +16,10 @@ struct CardView: View {
             
             if card.isFaceUp {
                 Image(card.imageName)
+                    .resizable()
             } else {
                 Image("FaceDownCard")
+                    .resizable()
             }
         }
     }

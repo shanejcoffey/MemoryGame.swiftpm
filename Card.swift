@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-class Card: Identifiable {
-    var isFaceUp: Bool
+class Card: Identifiable, ObservableObject {
+    @Published var isFaceUp: Bool
     var imageName: String
     var id = UUID()
     init(imageName: String, isFaceUp: Bool = false) {
