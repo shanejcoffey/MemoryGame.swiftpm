@@ -20,10 +20,10 @@ struct GameView: View {
             var columnss = Array(repeating: GridItem(.flexible()), count: columns)
             
             LazyVGrid(columns: columnss){
-                ForEach($cards){card in
-                    CardView(card: card)
+                ForEach(cards.indices){i in
+                    CardView(card: $cards[i])
                         .onTapGesture {
-                            //card.isFaceUp = true
+                            cards[i].isFaceUp.toggle()
                         }
                 }
             }
@@ -34,5 +34,15 @@ struct GameView: View {
             }
         }
     }
-        
+    func amountOfCardsUp(){
+        var count = 0
+        for i in 0..<cards.count{
+            if cards[i].isFaceUp{
+                count += 1
+            }
+        }
+        if count >= 2{
+            
+        }
+    }
 }
