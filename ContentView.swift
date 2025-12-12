@@ -67,7 +67,7 @@ struct ContentView: View {
                                 .frame(maxWidth: 190, maxHeight: 150)
                                 .foregroundStyle(.cyan)
                             
-                            NavigationLink("Single player", destination: GameView(columns: columns, rows: rows, amountOfCards: $numCards))
+                            NavigationLink("Single player", destination: GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts")], numColumns: columns, numRows: rows, cardShown: [true]))
                                 .foregroundStyle(.black)
                                 .font(.title)
                                 .bold()
@@ -96,21 +96,20 @@ struct ContentView: View {
         }
     }
     func rowAndColumn(){
-        if difficultySelected == "super easy"{
-            rows = 2
-            columns = 2
-        }
-        if difficultySelected == "easy"{
-            rows = 4
-            columns = 2
-        }
-        if difficultySelected == "medium"{
-            rows = 4
-            columns = 4
-        }
+        
+        
         if difficultySelected == "hard"{
             rows = 4
             columns = 6
+        } else if difficultySelected == "medium"{
+            rows = 4
+            columns = 4
+        } else if difficultySelected == "easy"{
+            rows = 4
+            columns = 2
+        } else {
+            rows = 2
+            columns = 2
         }
     }
 }

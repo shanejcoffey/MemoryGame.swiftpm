@@ -13,6 +13,7 @@ struct GameView: View {
     @State var numColumns: Int
     @State var numRows: Int
     @State var selected: Int = -1
+    @State var cardShown: [Bool]
     var amountOfCards: Int {
         return numRows * numColumns
     }
@@ -22,7 +23,7 @@ struct GameView: View {
             
             // makes a GridItem for each column
             let columns = Array(repeating: GridItem(.flexible()), count: numColumns)
-            var cardShown: [Bool] = Array(repeating: true, count: amountOfCards)
+            
             
             LazyVGrid(columns: columns){
                 ForEach(cards.indices){ i in
@@ -32,7 +33,7 @@ struct GameView: View {
                             .onTapGesture {
                                 if !cards[i].isFaceUp && selected == -1 {
                                     selected = i
-                                    cards[i].isFaceUp.toggle()
+                                    cards[i].isFaceUp = true
                                     print("card \(i) is \(cards[i].isFaceUp) face up")
                                 } else if !cards[i].isFaceUp {
                                     if cards[selected].imageName == cards[i].imageName {
@@ -42,26 +43,36 @@ struct GameView: View {
                                             cardShown[i] = false
                                             cardShown[selected] = false
                                             print("maybe done hiding")
+                                            selected = -1
                                         }
                                     }
                                 }
                             }
+                        
+                    }
+                
                     }
                 }
             }
+        .onAppear(){
+            cardShown = Array(repeating: true, count: amountOfCards)
         }
-    }
-    func amountOfCardsUp() -> Int {
-        var count = 0
-        for i in 0..<cards.count{
-            if cards[i].isFaceUp {
-                count += 1
+        }
+        func amountOfCardsUp() -> Int {
+            var count = 0
+            for i in 0..<cards.count{
+                if cards[i].isFaceUp {
+                    count += 1
+                }
             }
+            return count
         }
-        return count
+    func test(){
+        print("test")
     }
-}
+    }
+    
 
 #Preview {
-    GameView(cards: [Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades")], numColumns: 2, numRows: 2)
+    GameView(cards: [Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades")], numColumns: 2, numRows: 2, cardShown: [true])
 }
