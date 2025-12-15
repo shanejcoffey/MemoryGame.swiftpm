@@ -13,7 +13,6 @@ struct GameView: View {
     @State var numColumns: Int
     @State var numRows: Int
     @State var selected: Int = -1
-    @State var cardShown: [Bool]
     var amountOfCards: Int {
         return numRows * numColumns
     }
@@ -35,49 +34,36 @@ struct GameView: View {
                                     selected = i
                                     cards[i].isFaceUp = true
                                     print("card \(i) is \(cards[i].isFaceUp) face up")
-                                 } else if !cards[i].isFaceUp {
-                                     if cards[selected].imageName == cards[i].imageName {
-                                            cards[i].isFaceUp = true
-                                            withAnimation(.easeIn(duration: 0.3).delay(1)) {
-                                                    print("hiding cards")
-                                                cardShown[i] = false
-                                                cardShown[selected] = false
-                                                print("maybe done hiding")
-                                                selected = -1
-                                            }
-                                     }
-                                 }
-                            }
-                        /* if selected == nil {
-                                    selected = i
+                                } else if !cards[i].isFaceUp {
                                     cards[i].isFaceUp = true
-                                } else if let first = selected, first != i {
-                                    if cards[first].imageName == cards[i].imageName {
-                                        cards[i].isFaceUp = true
-                                        //chatgpt
-                                   // DispatchQueue.main.asyncAfter(deadline: .now() + 1)
-                                        //{
-                                            //withAnimation(.easeIn(duration: 0.3).delay(1)) {
-                                                cards[i].isMatched = true
-                                                cards[first].isMatched = true
-                                                selected = nil
-                                        //}
-
-                                       // }
-                                        
-                                    } else {
-                                        selected = nil
+                                    withAnimation(.easeIn(duration: 0.3).delay(1)) {
+                                        if cards[selected].imageName == cards[i].imageName {
+                                            print("hiding cards")
+                                            cards[i].isMatched = true
+                                            cards[selected].isMatched = true
+                                            print("maybe done hiding")
+                                            selected = -1
+                                        } else {
+                                            cards[i].isFaceUp = false
+                                            cards[selected].isFaceUp = false
+                                            selected = -1
+                                        }
                                     }
                                 }
-                                 */
                             }
+                    } else {
+                        ZStack {
+                            
+                        }
                     }
                 }
             }
             /*.onAppear(){
-                cardShown = Array(repeating: true, count: amountOfCards)
-            }*/
+             cardShown = Array(repeating: true, count: amountOfCards)
+             }*/
         }
+    }
+    
     func amountOfCardsUp() -> Int {
                     var count = 0
                     for i in 0..<cards.count{
@@ -92,6 +78,6 @@ struct GameView: View {
     
 
     #Preview {
-        GameView(cards: [Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades")], numColumns: 2, numRows: 2, cardShown: [true,true,true, true])
+        GameView(cards: [Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades"), Card(imageName: "AceSpades")], numColumns: 2, numRows: 2)
     }
 
