@@ -22,5 +22,7 @@ struct CardView: View {
                     .resizable()
             }
         }
+        .opacity(card.isMatched ? 0 : 1)
+        .disabled(card.isMatched)
     }
 }
