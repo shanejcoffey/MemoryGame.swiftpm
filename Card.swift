@@ -12,7 +12,7 @@ class Card: Identifiable, ObservableObject {
     @Published var isFaceUp: Bool
     var imageName: String
     var id = UUID()
-    var isMatched: Bool = false
+    @Published var isMatched: Bool = false
     init(imageName: String, isFaceUp: Bool = false) {
         self.imageName = imageName
         self.isFaceUp = isFaceUp
