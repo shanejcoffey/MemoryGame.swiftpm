@@ -20,17 +20,19 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 
-                Text("Welcome to memory game")
+                Text("Welcome to Memory Game")
                     .font(.largeTitle)
                     .bold()
+                    .multilineTextAlignment(.center)
                 
                 Spacer()
                 
-                Text("select num cards here")
+                Text("Difficulty:")
+                    .font(.title2)
                 
                 ZStack {
                     Menu {
-                        // this sorts it by the number that is gotten from the dictionary
+                        // this sorts it by the number that is gotten from the dictionary so that its easiest to hardest
                         ForEach(difficultiesDictionary.keys.sorted { lhs, rhs in
                             difficultiesDictionary[lhs]! < difficultiesDictionary[rhs]!
                         }, id: \.self) { difficulty in
@@ -38,8 +40,8 @@ struct ContentView: View {
                                 difficultySelected = difficulty
                             } label: {
                                 HStack {
-                                    Image("\(difficulty)Image")
                                     Text(difficulty)
+                                        .font(.title2)
                                 }
                             }
                         }
@@ -47,6 +49,7 @@ struct ContentView: View {
                         HStack{
                             Text(difficultySelected)
                                 .foregroundStyle(.blue)
+                                .font(.title2)
                             
                             Image(systemName: "arrowshape.down.fill")
                                 .resizable()
@@ -67,21 +70,9 @@ struct ContentView: View {
                                 .frame(maxWidth: 190, maxHeight: 150)
                                 .foregroundStyle(.cyan)
                             
-                            NavigationLink("Single player"){
+                            NavigationLink("Start Game"){
                                 if difficultySelected == "hard"{
-                                    GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
-                                        Card(imageName: "aceDiamonds"),
-                                        Card(imageName: "aceDiamonds"),
-                                        Card(imageName: "aceClubs"),
-                                        Card(imageName: "aceClubs"),
-                                        Card(imageName: "kingClubs"),
-                                        Card(imageName: "kingClubs"),
-                                        Card(imageName: "kingHearts"),
-                                        Card(imageName: "kingHearts"),
-                                        Card(imageName: "kingDiamonds"),
-                                        Card(imageName: "kingDiamonds"),
-                                        Card(imageName: "kingSpades"),
-                                        Card(imageName: "kingSpades"),
+                                    GameView(cards: [
                                         Card(imageName: "aceSpades"),
                                         Card(imageName: "aceSpades"),
                                         Card(imageName: "aceHearts"),
@@ -97,9 +88,19 @@ struct ContentView: View {
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingSpades"),
-                                        Card(imageName: "kingSpades")], numColumns: 6, numRows: 4)
+                                        Card(imageName: "kingSpades"),
+                                        Card(imageName: "queenSpades"),
+                                        Card(imageName: "queenSpades"),
+                                        Card(imageName: "queenHearts"),
+                                        Card(imageName: "queenHearts"),
+                                        Card(imageName: "queenDiamonds"),
+                                        Card(imageName: "queenDiamonds"),
+                                        Card(imageName: "queenClubs"),
+                                        Card(imageName: "queenClubs")].shuffled(), numColumns: 6, numRows: 4)
                                 } else if difficultySelected == "medium"{
-                                    GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
+                                    GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
+                                        Card(imageName: "aceHearts"),
+                                        Card(imageName: "aceHearts"),
                                         Card(imageName: "aceDiamonds"),
                                         Card(imageName: "aceDiamonds"),
                                         Card(imageName: "aceClubs"),
@@ -111,7 +112,7 @@ struct ContentView: View {
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingSpades"),
-                                        Card(imageName: "kingSpades")], numColumns: 4, numRows: 4)
+                                        Card(imageName: "kingSpades")].shuffled(), numColumns: 4, numRows: 4)
                                 } else if difficultySelected == "easy"{
                                     GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
                                         Card(imageName: "aceHearts"),
@@ -119,10 +120,13 @@ struct ContentView: View {
                                         Card(imageName: "aceDiamonds"),
                                         Card(imageName: "aceDiamonds"),
                                         Card(imageName: "aceClubs"),
-                                        Card(imageName: "aceClubs")], numColumns: 4, numRows: 2)
+                                        Card(imageName: "aceClubs")].shuffled(), numColumns: 4, numRows: 2)
                                 } else {
                                     GameView(cards: [
-                                        Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts")], numColumns: 2, numRows: 2)
+                                        Card(imageName: "aceSpades"),
+                                        Card(imageName: "aceSpades"),
+                                        Card(imageName: "aceHearts"),
+                                        Card(imageName: "aceHearts")].shuffled(), numColumns: 2, numRows: 2)
                                 }
                                
                             }
