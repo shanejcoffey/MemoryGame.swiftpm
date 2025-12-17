@@ -24,5 +24,6 @@ struct CardView: View {
         }
         .opacity(card.isMatched ? 0 : 1)
         .disabled(card.isMatched)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
