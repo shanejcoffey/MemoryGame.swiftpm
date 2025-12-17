@@ -69,19 +69,19 @@ struct ContentView: View {
                             
                             NavigationLink("Single player"){
                                 if difficultySelected == "hard"{
-                                    GameView(cards: [Card(imageName: "jackSpades"), Card(imageName: "jackSpades"), Card(imageName: "jackHearts"), Card(imageName: "jackHearts"),
-                                        Card(imageName: "jackDiamonds"),
-                                        Card(imageName: "jackDiamonds"),
-                                        Card(imageName: "jackClubs"),
-                                        Card(imageName: "jackClubs"),
-                                        Card(imageName: "queenClubs"),
-                                        Card(imageName: "queenClubs"),
-                                        Card(imageName: "queenHearts"),
-                                        Card(imageName: "queenHearts"),
-                                        Card(imageName: "queenDiamonds"),
-                                        Card(imageName: "queenDiamonds"),
-                                        Card(imageName: "queenSpades"),
-                                        Card(imageName: "queenSpades"),
+                                    GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
+                                        Card(imageName: "aceDiamonds"),
+                                        Card(imageName: "aceDiamonds"),
+                                        Card(imageName: "aceClubs"),
+                                        Card(imageName: "aceClubs"),
+                                        Card(imageName: "kingClubs"),
+                                        Card(imageName: "kingClubs"),
+                                        Card(imageName: "kingHearts"),
+                                        Card(imageName: "kingHearts"),
+                                        Card(imageName: "kingDiamonds"),
+                                        Card(imageName: "kingDiamonds"),
+                                        Card(imageName: "kingSpades"),
+                                        Card(imageName: "kingSpades"),
                                         Card(imageName: "aceSpades"),
                                         Card(imageName: "aceSpades"),
                                         Card(imageName: "aceHearts"),
@@ -97,7 +97,7 @@ struct ContentView: View {
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingSpades"),
-                                        Card(imageName: "kingSpades")], numColumns: columns, numRows: rows)
+                                        Card(imageName: "kingSpades")], numColumns: 6, numRows: 4)
                                 } else if difficultySelected == "medium"{
                                     GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
                                         Card(imageName: "aceDiamonds"),
@@ -111,37 +111,24 @@ struct ContentView: View {
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingDiamonds"),
                                         Card(imageName: "kingSpades"),
-                                        Card(imageName: "kingSpades")], numColumns: columns, numRows: rows)
+                                        Card(imageName: "kingSpades")], numColumns: 4, numRows: 4)
                                 } else if difficultySelected == "easy"{
-                                    GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
+                                    GameView(cards: [Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
+                                        Card(imageName: "aceHearts"),
+                                        Card(imageName: "aceHearts"),
                                         Card(imageName: "aceDiamonds"),
                                         Card(imageName: "aceDiamonds"),
                                         Card(imageName: "aceClubs"),
-                                        Card(imageName: "aceClubs")], numColumns: columns, numRows: rows)
+                                        Card(imageName: "aceClubs")], numColumns: 4, numRows: 2)
                                 } else {
                                     GameView(cards: [
-                                        Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts")], numColumns: columns, numRows: rows)
+                                        Card(imageName: "aceSpades"), Card(imageName: "aceSpades"), Card(imageName: "aceHearts"), Card(imageName: "aceHearts")], numColumns: 2, numRows: 2)
                                 }
                                
                             }
                             .foregroundStyle(.black)
                             .font(.title)
                             .bold()
-                        }
-                    }
-                    
-                    Button {
-                        
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(maxWidth: 190, maxHeight: 150)
-                                .foregroundStyle(.cyan)
-                            
-                            Text("Single player")
-                                .foregroundStyle(.black)
-                                .font(.title)
-                                .bold()
                         }
                     }
 
@@ -159,8 +146,8 @@ struct ContentView: View {
             rows = 4
             columns = 4
         } else if difficultySelected == "easy"{
-            rows = 4
-            columns = 2
+            rows = 2
+            columns = 4
         } else {
             rows = 2
             columns = 2
