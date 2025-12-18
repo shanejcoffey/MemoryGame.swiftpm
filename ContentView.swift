@@ -40,13 +40,18 @@ struct ContentView: View {
 
                 Spacer().frame(height: 50)
 
-                NavigationLink("BEST TIMES") {
-                    TimesView(
-                        bestSuperEasyTimes: $bestSuperEasyTimes,
-                        bestEasyTimes: $bestEasyTimes,
-                        bestMediumTimes: $bestMediumTimes,
-                        bestHardTimes: $bestHardTimes
-                    )
+                ZStack {
+                    Capsule()
+                        .frame(width: 150, height: 50)
+                    NavigationLink("BEST TIMES") {
+                        TimesView(
+                            bestSuperEasyTimes: $bestSuperEasyTimes,
+                            bestEasyTimes: $bestEasyTimes,
+                            bestMediumTimes: $bestMediumTimes,
+                            bestHardTimes: $bestHardTimes
+                        )
+                    }
+                    .foregroundStyle(.white)
                 }
 
                 Spacer().frame(height: 50)
@@ -83,73 +88,79 @@ struct ContentView: View {
 
                 Spacer()
 
-                NavigationLink("Start Game") {
-
-                    if difficultySelected == "hard" {
-                        GameView(
-                            cards: [
-                                Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
-                                Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
-                                Card(imageName: "aceDiamonds"), Card(imageName: "aceDiamonds"),
-                                Card(imageName: "aceClubs"), Card(imageName: "aceClubs"),
-                                Card(imageName: "kingClubs"), Card(imageName: "kingClubs"),
-                                Card(imageName: "kingHearts"), Card(imageName: "kingHearts"),
-                                Card(imageName: "kingDiamonds"), Card(imageName: "kingDiamonds"),
-                                Card(imageName: "kingSpades"), Card(imageName: "kingSpades"),
-                                Card(imageName: "queenSpades"), Card(imageName: "queenSpades"),
-                                Card(imageName: "queenHearts"), Card(imageName: "queenHearts"),
-                                Card(imageName: "queenDiamonds"), Card(imageName: "queenDiamonds"),
-                                Card(imageName: "queenClubs"), Card(imageName: "queenClubs")
-                            ].shuffled(),
-                            numColumns: 6,
-                            numRows: 4,
-                            bestTimes: $bestHardTimes
-                        )
-
-                    } else if difficultySelected == "medium" {
-                        GameView(
-                            cards: [
-                                Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
-                                Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
-                                Card(imageName: "aceDiamonds"), Card(imageName: "aceDiamonds"),
-                                Card(imageName: "aceClubs"), Card(imageName: "aceClubs"),
-                                Card(imageName: "kingClubs"), Card(imageName: "kingClubs"),
-                                Card(imageName: "kingHearts"), Card(imageName: "kingHearts"),
-                                Card(imageName: "kingDiamonds"), Card(imageName: "kingDiamonds"),
-                                Card(imageName: "kingSpades"), Card(imageName: "kingSpades")
-                            ].shuffled(),
-                            numColumns: 4,
-                            numRows: 4,
-                            bestTimes: $bestMediumTimes
-                        )
-
-                    } else if difficultySelected == "easy" {
-                        GameView(
-                            cards: [
-                                Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
-                                Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
-                                Card(imageName: "aceDiamonds"), Card(imageName: "aceDiamonds"),
-                                Card(imageName: "aceClubs"), Card(imageName: "aceClubs")
-                            ].shuffled(),
-                            numColumns: 4,
-                            numRows: 2,
-                            bestTimes: $bestEasyTimes
-                        )
-
-                    } else {
-                        GameView(
-                            cards: [
-                                Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
-                                Card(imageName: "aceHearts"), Card(imageName: "aceHearts")
-                            ].shuffled(),
-                            numColumns: 2,
-                            numRows: 2,
-                            bestTimes: $bestSuperEasyTimes
-                        )
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.blue)
+                        .frame(width:200, height: 100)
+                    NavigationLink("Start Game") {
+                        
+                        if difficultySelected == "hard" {
+                            GameView(
+                                cards: [
+                                    Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
+                                    Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
+                                    Card(imageName: "aceDiamonds"), Card(imageName: "aceDiamonds"),
+                                    Card(imageName: "aceClubs"), Card(imageName: "aceClubs"),
+                                    Card(imageName: "kingClubs"), Card(imageName: "kingClubs"),
+                                    Card(imageName: "kingHearts"), Card(imageName: "kingHearts"),
+                                    Card(imageName: "kingDiamonds"), Card(imageName: "kingDiamonds"),
+                                    Card(imageName: "kingSpades"), Card(imageName: "kingSpades"),
+                                    Card(imageName: "queenSpades"), Card(imageName: "queenSpades"),
+                                    Card(imageName: "queenHearts"), Card(imageName: "queenHearts"),
+                                    Card(imageName: "queenDiamonds"), Card(imageName: "queenDiamonds"),
+                                    Card(imageName: "queenClubs"), Card(imageName: "queenClubs")
+                                ].shuffled(),
+                                numColumns: 6,
+                                numRows: 4,
+                                bestTimes: $bestHardTimes
+                            )
+                            
+                        } else if difficultySelected == "medium" {
+                            GameView(
+                                cards: [
+                                    Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
+                                    Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
+                                    Card(imageName: "aceDiamonds"), Card(imageName: "aceDiamonds"),
+                                    Card(imageName: "aceClubs"), Card(imageName: "aceClubs"),
+                                    Card(imageName: "kingClubs"), Card(imageName: "kingClubs"),
+                                    Card(imageName: "kingHearts"), Card(imageName: "kingHearts"),
+                                    Card(imageName: "kingDiamonds"), Card(imageName: "kingDiamonds"),
+                                    Card(imageName: "kingSpades"), Card(imageName: "kingSpades")
+                                ].shuffled(),
+                                numColumns: 4,
+                                numRows: 4,
+                                bestTimes: $bestMediumTimes
+                            )
+                            
+                        } else if difficultySelected == "easy" {
+                            GameView(
+                                cards: [
+                                    Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
+                                    Card(imageName: "aceHearts"), Card(imageName: "aceHearts"),
+                                    Card(imageName: "aceDiamonds"), Card(imageName: "aceDiamonds"),
+                                    Card(imageName: "aceClubs"), Card(imageName: "aceClubs")
+                                ].shuffled(),
+                                numColumns: 4,
+                                numRows: 2,
+                                bestTimes: $bestEasyTimes
+                            )
+                            
+                        } else {
+                            GameView(
+                                cards: [
+                                    Card(imageName: "aceSpades"), Card(imageName: "aceSpades"),
+                                    Card(imageName: "aceHearts"), Card(imageName: "aceHearts")
+                                ].shuffled(),
+                                numColumns: 2,
+                                numRows: 2,
+                                bestTimes: $bestSuperEasyTimes
+                            )
+                        }
                     }
+                    .foregroundStyle(.white)
+                    .font(.title)
+                    .bold()
                 }
-                .font(.title)
-                .bold()
 
                 Spacer()
             }
