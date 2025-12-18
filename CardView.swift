@@ -24,6 +24,7 @@ struct CardView: View {
         }
         .opacity(card.isMatched ? 0 : 1)
         .disabled(card.isMatched)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .aspectRatio(2/3, contentMode: .fit)
+        //.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
